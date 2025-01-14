@@ -1,6 +1,0 @@
-Pizza 7.49
-Pasta 6.27
-Salad 4.50
-Sandwich 6.24
-Cheesecake 4.75
-Burger 5.99

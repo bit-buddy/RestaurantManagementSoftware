@@ -1,10 +1,10 @@
 Buns 11800
 Beef 60700
-Cheese 79000
-Dough 72000
+Cheese 78700
+Dough 71600
 Pasta 12300
 Lettuce 668
 Cucumber 500
 Bread 34000
 Crust 500
-Tomato 16300
+Tomato 16100
