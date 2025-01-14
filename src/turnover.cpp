@@ -36,7 +36,7 @@ void getNextDay(int &day, int &month, int &year)
 
 void updateTurnover(const char *productName, const char op)
 {
-    ifstream menuFile("menu.txt");
+    ifstream menuFile("../data/menu.txt");
     if (!menuFile)
     {
         cout << "Error: Unable to open menu file!" << endl;
@@ -64,7 +64,7 @@ void updateTurnover(const char *productName, const char op)
         return;
     }
 
-    fstream turnoverFile("turnover_by_day.txt", ios::in | ios::out);
+    fstream turnoverFile("../data/turnover_by_day.txt", ios::in | ios::out);
     if (!turnoverFile)
     {
         cout << "Error: Unable to open turnover file!" << endl;
@@ -116,12 +116,11 @@ void updateTurnover(const char *productName, const char op)
     turnoverFile << date << " " << currentTurnover << endl;
 
     turnoverFile.close();
-    cout << "Turnover updated successfully for " << date << ": " << currentTurnover << " BGN" << endl;
 }
 
 void showTurnoverForLastDay()
 {
-    ifstream turnoverFile("turnover_by_day.txt");
+    ifstream turnoverFile("../data/turnover_by_day.txt");
     if (!turnoverFile)
     {
         cout << "Error: Unable to open turnover file!" << endl;
@@ -156,7 +155,7 @@ void showTurnoverForLastDay()
 
 void addNextDayToTurnoverFile()
 {
-    ifstream turnoverFile("turnover_by_day.txt");
+    ifstream turnoverFile("../data/turnover_by_day.txt");
     if (!turnoverFile)
     {
         cout << "Error: Unable to open turnover file!" << endl;
@@ -194,7 +193,7 @@ void addNextDayToTurnoverFile()
     char newDate[50];
     snprintf(newDate, sizeof(newDate), "%02d.%02d.%04d", day, month, year);
 
-    ofstream turnoverFileOut("turnover_by_day.txt", ios::app);
+    ofstream turnoverFileOut("../data/turnover_by_day.txt", ios::app);
     if (!turnoverFileOut)
     {
         cout << "Error: Unable to open turnover file for appending!" << endl;
@@ -208,7 +207,7 @@ void addNextDayToTurnoverFile()
 
 void printAllTurnovers()
 {
-    ifstream turnoverFile("turnover_by_day.txt");
+    ifstream turnoverFile("../data/turnover_by_day.txt");
     if (!turnoverFile)
     {
         cout << "Error: Unable to open turnover file!" << endl;
