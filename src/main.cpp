@@ -20,8 +20,8 @@ void chooseUserType()
 
         if (cin.fail() || (userType != 0 && userType != 1 && userType != 2))
         {
-            cin.clear();             // Clear the error flag
-            cin.ignore(10000, '\n'); // Discard invalid input
+            cin.clear();
+            cin.ignore(10000, '\n'); 
             cout << "Invalid choice! Please enter 0, 1, or 2." << endl;
             continue;
         }
@@ -45,7 +45,6 @@ void chooseUserType()
 }
 void waiterMenu()
 {
-    const int MAX_SIZE = 100;
     int waiterChoice;
     do
     {
@@ -68,21 +67,23 @@ void waiterMenu()
             printMenuItems();
             break;
         case 2:
-            char input[MAX_LEN];
-            cout << "Enter the desired order:\n";
-            cin>>input;
-            cout<<"You entered: "<<input<<endl;
-            placeOrder(input);
+             char productName[50];
+            cout << "Enter product name to order: ";
+            cin >> productName;
+            placeOrder(productName);
 
             break;
         case 3:
-            // Call function to cancel order
+            char productName[50];
+            cout << "Enter product name to cancel: ";
+            cin >> productName;
+            cancelOrder(productName);
             break;
         case 4:
-            // Call function to view past orders
+            printOrdersWithoutQuantities();
             break;
         case 5:
-            // Call function to view sorted past orders and counts
+            printSortedOrdersWithQuantities();
             break;
         case 6:
             showTurnoverForLastDay();
@@ -173,6 +174,9 @@ void managerMenu()
             break;
         case 10:
             addNextDayToTurnoverFile();
+            break;
+        case 11:
+            printAllTurnovers();
             break;
         case 12:
         {
