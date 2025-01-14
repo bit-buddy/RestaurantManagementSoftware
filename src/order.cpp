@@ -10,7 +10,7 @@ using namespace std;
 // Function to check if the product is in the menu
 bool isProductInMenu(const char *productName)
 {
-    ifstream menuFile("menu.txt");
+    ifstream menuFile("../data/menu.txt");
     if (!menuFile)
     {
         cout << "Error opening the menu file!" << endl;
@@ -33,7 +33,7 @@ bool isProductInMenu(const char *productName)
 
 void updateOrderFile(const char *productName)
 {
-    fstream ordersFile("orders.txt", ios::in | ios::out);
+    fstream ordersFile("../data/orders.txt", ios::in | ios::out);
     if (!ordersFile)
     {
         cout << "Error opening the orders file!" << endl;
@@ -67,7 +67,7 @@ void updateOrderFile(const char *productName)
     }
     ordersFile.close();
 
-    ofstream overwriteFile("orders.txt");
+    ofstream overwriteFile("../data/orders.txt");
     overwriteFile << content;
     overwriteFile.close();
 
@@ -76,7 +76,7 @@ void updateOrderFile(const char *productName)
 
 bool removeOrderFromFile(const char *productName)
 {
-    fstream ordersFile("orders.txt", ios::in | ios::out);
+    fstream ordersFile("../data/orders.txt", ios::in | ios::out);
     if (!ordersFile)
     {
         cout << "Error: Unable to open orders file!" << endl;
@@ -115,7 +115,7 @@ bool removeOrderFromFile(const char *productName)
         return false;
     }
 
-    ofstream overwriteOrders("orders.txt");
+    ofstream overwriteOrders("../data/orders.txt");
     overwriteOrders << updatedOrders;
     overwriteOrders.close();
 
@@ -155,7 +155,7 @@ void cancelOrder(const char *productName)
 
 void printOrdersWithoutQuantities()
 {
-    ifstream ordersFile("orders.txt");
+    ifstream ordersFile("../data/orders.txt");
     if (!ordersFile)
     {
         cout << "Error: Unable to open orders file!" << endl;
@@ -194,7 +194,7 @@ void sortOrdersAlphabetically(Order orders[], int orderCount)
 
 void printSortedOrdersWithQuantities()
 {
-    ifstream ordersFile("orders.txt");
+    ifstream ordersFile("../data/orders.txt");
     if (!ordersFile)
     {
         cerr << "Error: Unable to open orders file!" << endl;
