@@ -6,7 +6,7 @@
 using namespace std;
 
 void printMenuItems() {
-    ifstream inFile("menu.txt");
+    ifstream inFile("../data/menu.txt");
 
     if (!inFile) {
         cout << "Error: Unable to open file!" << endl;
@@ -28,7 +28,7 @@ void printMenuItems() {
 }
 
 void addProductToMenu(const char* productName, double productPrice) {
-    ofstream menuFile("menu.txt", ios::app);
+    ofstream menuFile("../data/menu.txt", ios::app);
     if (!menuFile) {
         cout << "Error: Unable to open menu file!" << endl;
         return;
@@ -41,13 +41,13 @@ void addProductToMenu(const char* productName, double productPrice) {
 }
 
 void removeProductFromMenu(const char* productName) {
-    ifstream menuFile("menu.txt");
+    ifstream menuFile("../data/menu.txt");
     if (!menuFile) {
         cout << "Error: Unable to open menu file!" << endl;
         return;
     }
 
-    ofstream tempFile("temp_menu.txt");
+    ofstream tempFile("../data/temp_menu.txt");
     if (!tempFile) {
         cout << "Error: Unable to open temporary file!" << endl;
         menuFile.close();
@@ -75,11 +75,11 @@ void removeProductFromMenu(const char* productName) {
     tempFile.close();
 
     if (productFound) {
-        remove("menu.txt"); 
-        rename("temp_menu.txt", "menu.txt"); 
+        remove("../data/menu.txt"); 
+        rename("../data/temp_menu.txt", "../data/menu.txt"); 
         cout << "Product \"" << productName << "\" has been removed from the menu." << endl;
     } else {
-        remove("temp_menu.txt"); 
+        remove("../data/temp_menu.txt"); 
         cout << "Product \"" << productName << "\" not found in the menu." << endl;
     }
 }
