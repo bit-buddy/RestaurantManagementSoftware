@@ -1,7 +1,9 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
-#include "functions.h"
+#include "../include/order.h"
+#include "../include/storage.h"
+#include "../include/turnover.h"
 
 using namespace std;
 

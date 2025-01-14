@@ -1,37 +1,72 @@
-#include "functions.h"
 #include <iostream>
 #include <fstream>
 #include <cstring>
+#include "../include/turnover.h"
+#include "../include/calendar.h"
 
 using namespace std;
 
-void updateTurnover(const char *productName, const char op) {
+bool isLeapYear(int year)
+{
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+void getNextDay(int &day, int &month, int &year)
+{
+    const int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+    int maxDays = daysInMonth[month];
+    if (month == 2 && isLeapYear(year))
+    {
+        maxDays = 29;
+    }
+
+    day++;
+    if (day > maxDays)
+    {
+        day = 1;
+        month++;
+        if (month > 12)
+        {
+            month = 1;
+            year++;
+        }
+    }
+}
+
+void updateTurnover(const char *productName, const char op)
+{
     ifstream menuFile("menu.txt");
-    if (!menuFile) {
+    if (!menuFile)
+    {
         cout << "Error: Unable to open menu file!" << endl;
         return;
     }
 
     double productPrice = 0.0;
     char line[100];
-    while (menuFile.getline(line, sizeof(line))) {
+    while (menuFile.getline(line, sizeof(line)))
+    {
         char menuProduct[50];
         double price;
         sscanf(line, "%s %lf", menuProduct, &price);
-        if (strcmp(menuProduct, productName) == 0) {
+        if (strcmp(menuProduct, productName) == 0)
+        {
             productPrice = price;
             break;
         }
     }
     menuFile.close();
 
-    if (productPrice == 0.0) {
+    if (productPrice == 0.0)
+    {
         cout << "Error: Product not found in the menu!" << endl;
         return;
     }
 
     fstream turnoverFile("turnover_by_day.txt", ios::in | ios::out);
-    if (!turnoverFile) {
+    if (!turnoverFile)
+    {
         cout << "Error: Unable to open turnover file!" << endl;
         return;
     }
@@ -39,12 +74,14 @@ void updateTurnover(const char *productName, const char op) {
     char currentLine[100];
     char lastLine[100] = "";
     streampos lastLinePos = turnoverFile.tellg();
-    while (turnoverFile.getline(currentLine, sizeof(currentLine))) {
+    while (turnoverFile.getline(currentLine, sizeof(currentLine)))
+    {
         strcpy(lastLine, currentLine);
         lastLinePos = turnoverFile.tellg();
     }
 
-    if (strlen(lastLine) == 0) {
+    if (strlen(lastLine) == 0)
+    {
         cout << "Error: Turnover file is empty!" << endl;
         turnoverFile.close();
         return;
@@ -52,18 +89,23 @@ void updateTurnover(const char *productName, const char op) {
 
     char date[50];
     double currentTurnover;
-    if (sscanf(lastLine, "%s %lf", date, &currentTurnover) != 2) {
+    if (sscanf(lastLine, "%s %lf", date, &currentTurnover) != 2)
+    {
         cout << "Error: Unable to parse the last line of the turnover file!" << endl;
         turnoverFile.close();
         return;
     }
 
-    if (op=='+') {
+    if (op == '+')
+    {
         currentTurnover += productPrice;
-    } else if (op=='-') {
+    }
+    else if (op == '-')
+    {
         currentTurnover -= productPrice;
-       
-    } else {
+    }
+    else
+    {
         cout << "Error: Invalid operation specified!" << endl;
         turnoverFile.close();
         return;
@@ -86,14 +128,13 @@ void showTurnoverForLastDay()
         return;
     }
 
-    char lastLine[100] = ""; 
+    char lastLine[100] = "";
     char currentLine[100];
 
     while (turnoverFile.getline(currentLine, sizeof(currentLine)))
     {
-        strcpy(lastLine, currentLine); 
+        strcpy(lastLine, currentLine);
     }
-    //cout<<lastLine<<endl;//
 
     turnoverFile.close();
 
@@ -122,12 +163,12 @@ void addNextDayToTurnoverFile()
         return;
     }
 
-    char lastLine[100] = ""; 
+    char lastLine[100] = "";
     char currentLine[100];
 
     while (turnoverFile.getline(currentLine, sizeof(currentLine)))
     {
-        strcpy(lastLine, currentLine); 
+        strcpy(lastLine, currentLine);
     }
 
     turnoverFile.close();
@@ -165,21 +206,27 @@ void addNextDayToTurnoverFile()
     cout << "Added new day (" << newDate << ") with turnover 0.0 to the turnover file." << endl;
 }
 
-void printAllTurnovers() {
+void printAllTurnovers()
+{
     ifstream turnoverFile("turnover_by_day.txt");
-    if (!turnoverFile) {
+    if (!turnoverFile)
+    {
         cout << "Error: Unable to open turnover file!" << endl;
         return;
     }
 
     char line[100];
-    while (turnoverFile.getline(line, sizeof(line))) {
+    while (turnoverFile.getline(line, sizeof(line)))
+    {
         char date[50];
         double turnover;
 
-        if (sscanf(line, "%s %lf", date, &turnover) == 2) {
+        if (sscanf(line, "%s %lf", date, &turnover) == 2)
+        {
             cout << date << " " << turnover << " BGN" << endl;
-        } else {
+        }
+        else
+        {
             cout << "Error: Unable to parse line: " << line << endl;
         }
     }

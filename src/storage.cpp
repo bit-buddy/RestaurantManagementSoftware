@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstring>
-#include "functions.h"
+#include "../include/storage.h"
 
 using namespace std;
 

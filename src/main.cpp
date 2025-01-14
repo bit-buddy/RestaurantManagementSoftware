@@ -1,50 +1,14 @@
 #include <iostream>
-#include "functions.h"
 #include "order.cpp"
 #include "menu.cpp"
 #include "storage.cpp"
 #include "turnover.cpp"
-#include "calendar.cpp"
 
 using namespace std;
-
-void chooseUserType()
-{
-    cout << "Welcome to the Restaurant Management System!" << endl;
-
-    while (true)
-    {
-        cout << "\nAre you a (1) Waiter or (2) Manager? Enter 0 to Exit: ";
-        int userType;
-        cin >> userType;
-
-        if (cin.fail() || (userType != 0 && userType != 1 && userType != 2))
-        {
-            cin.clear();
-            cin.ignore(10000, '\n'); 
-            cout << "Invalid choice! Please enter 0, 1, or 2." << endl;
-            continue;
-        }
-
-        if (userType == 0)
-        {
-            cout << "Exiting the system. Goodbye!" << endl;
-            break;
-        }
-        else if (userType == 1)
-        {
-            cout << "\nYou are logged in as a Waiter." << endl;
-            waiterMenu();
-        }
-        else if (userType == 2)
-        {
-            cout << "\nYou are logged in as a Manager." << endl;
-            managerMenu();
-        }
-    }
-}
 void waiterMenu()
 {
+    char productName[50];
+
     int waiterChoice;
     do
     {
@@ -67,14 +31,12 @@ void waiterMenu()
             printMenuItems();
             break;
         case 2:
-             char productName[50];
             cout << "Enter product name to order: ";
             cin >> productName;
             placeOrder(productName);
 
             break;
         case 3:
-            char productName[50];
             cout << "Enter product name to cancel: ";
             cin >> productName;
             cancelOrder(productName);
@@ -100,6 +62,7 @@ void managerMenu()
 {
     const int MAX_SIZE = 100;
     int managerChoice;
+    char productName[50];
     do
     {
         cout << "\nManager Menu:" << endl;
@@ -127,7 +90,6 @@ void managerMenu()
             break;
         case 2:
         {
-            char productName[50];
             cout << "Enter product name to order: ";
             cin >> productName;
             placeOrder(productName);
@@ -135,7 +97,6 @@ void managerMenu()
         break;
         case 3:
         {
-            char productName[50];
             cout << "Enter product name to cancel: ";
             cin >> productName;
             cancelOrder(productName);
@@ -152,7 +113,6 @@ void managerMenu()
             break;
         case 7:
         {
-            char productName[50];
             cout << "Enter product name to remove from storage: ";
             cin >> productName;
             removeProductFromStorage(productName);
@@ -160,7 +120,6 @@ void managerMenu()
         break;
         case 8:
         {
-            char productName[50];
             int quantity;
             cout << "Enter product name to add to storage: ";
             cin >> productName;
@@ -180,7 +139,6 @@ void managerMenu()
             break;
         case 12:
         {
-            char productName[50];
             double price;
             cout << "Enter product name to add to menu: ";
             cin >> productName;
@@ -191,7 +149,6 @@ void managerMenu()
         break;
         case 13:
         {
-            char productName[50];
             cout << "Enter product name to remove from menu: ";
             cin >> productName;
             removeProductFromMenu(productName);
@@ -205,6 +162,42 @@ void managerMenu()
             break;
         }
     } while (managerChoice != 0);
+}
+
+void chooseUserType()
+{
+    cout << "Welcome to the Restaurant Management System!" << endl;
+
+    while (true)
+    {
+        cout << "\nAre you a (1) Waiter or (2) Manager? Enter 0 to Exit: ";
+        int userType;
+        cin >> userType;
+
+        if (cin.fail() || (userType != 0 && userType != 1 && userType != 2))
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Invalid choice! Please enter 0, 1, or 2." << endl;
+            continue;
+        }
+
+        if (userType == 0)
+        {
+            cout << "Exiting the system. Goodbye!" << endl;
+            break;
+        }
+        else if (userType == 1)
+        {
+            cout << "\nYou are logged in as a Waiter." << endl;
+            waiterMenu();
+        }
+        else if (userType == 2)
+        {
+            cout << "\nYou are logged in as a Manager." << endl;
+            managerMenu();
+        }
+    }
 }
 
 int main()
