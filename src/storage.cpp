@@ -25,7 +25,7 @@ ProductIngredients productData[] = {
 
 bool readStorage(Ingredient storage[], int &storageSize)
 {
-    ifstream storageFile("storage.txt");
+    ifstream storageFile("../data/storage.txt");
     if (!storageFile)
     {
         cout << "Error opening storage file!" << endl;
@@ -46,7 +46,7 @@ bool readStorage(Ingredient storage[], int &storageSize)
 
 void writeStorage(Ingredient storage[], int storageSize)
 {
-    ofstream storageFile("storage.txt");
+    ofstream storageFile("../data/storage.txt");
     if (!storageFile)
     {
         cerr << "Error opening storage file to write!" << endl;
@@ -153,7 +153,7 @@ void recoverIngredients(const char *productName)
 
 void printStorageWithQuantities()
 {
-    ifstream storageFile("storage.txt");
+    ifstream storageFile("../data/storage.txt");
     if (!storageFile)
     {
         cout << "Error: Unable to open storage file!" << endl;
@@ -176,7 +176,7 @@ void printStorageWithQuantities()
 
 void removeProductFromStorage(const char *productName)
 {
-    ifstream storageFile("storage.txt");
+    ifstream storageFile("../data/storage.txt");
     if (!storageFile)
     {
         cerr << "Error: Unable to open storage file!" << endl;
@@ -209,7 +209,7 @@ void removeProductFromStorage(const char *productName)
         return;
     }
 
-    ofstream storageOutput("storage.txt");
+    ofstream storageOutput("../data/storage.txt");
     if (!storageOutput)
     {
         cout << "Error: Unable to open storage file for writing!" << endl;
@@ -223,7 +223,7 @@ void removeProductFromStorage(const char *productName)
 
 void addProductToStorage(const char *productName, int quantity)
 {
-    ifstream storageFile("storage.txt");
+    ifstream storageFile("../data/storage.txt");
     if (!storageFile)
     {
         cout << "Error: Unable to open storage file!" << endl;
@@ -255,7 +255,7 @@ void addProductToStorage(const char *productName, int quantity)
         strcat(tempContent, newProductLine);
     }
 
-    ofstream storageOutput("storage.txt");
+    ofstream storageOutput("../data/storage.txt");
     if (!storageOutput)
     {
         cerr << "Error: Unable to open storage file for writing!" << endl;
