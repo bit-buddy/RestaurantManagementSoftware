@@ -7,4 +7,4 @@ Lettuce 668
 Cucumber 500
 Bread 34000
 Crust 500
-Tomato 16400
+Tomato 16300
