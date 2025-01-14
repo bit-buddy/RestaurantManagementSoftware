@@ -1,0 +1,10 @@
+Buns 11800
+Beef 60700
+Cheese 79000
+Dough 72000
+Pasta 12300
+Lettuce 668
+Cucumber 500
+Bread 34000
+Crust 500
+Tomato 16400
