@@ -1,3 +1,18 @@
+/*
+*
+* Solution to course project # 1
+* Introduction to programming course
+* Faculty of Mathematics and Informatics of Sofia University
+* Winter semester 2024/2025
+*
+* @author Konstantin Alyakov
+* @idnumber 4MI0600453
+* @compiler GCC
+
+* <Main function. It is meant to get the user's data and display the chosen functionality on the console>
+*
+*/
+
 #include <iostream>
 #include "order.cpp"
 #include "menu.cpp"

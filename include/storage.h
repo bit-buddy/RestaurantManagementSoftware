@@ -1,3 +1,18 @@
+/*
+*
+* Solution to course project # 1
+* Introduction to programming course
+* Faculty of Mathematics and Informatics of Sofia University
+* Winter semester 2024/2025
+*
+* @author Konstantin Alyakov
+* @idnumber 4MI0600453
+* @compiler GCC
+
+* <file with declarations of the functionalities within the storage.cpp file>
+*
+*/
+
 #ifndef STORAGE_H
 #define STORAGE_H
 #include "../include/constants.h"
