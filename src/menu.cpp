@@ -20,10 +20,12 @@
 
 using namespace std;
 
-void printMenuItems() {
+void printMenuItems()
+{
     ifstream inFile("../data/menu.txt");
 
-    if (!inFile) {
+    if (!inFile)
+    {
         cout << "Error: Unable to open file!" << endl;
         return;
     }
@@ -35,16 +37,19 @@ void printMenuItems() {
     cout << "-----------------------\n";
 
     int counter = 1;
-    while (inFile >> itemName >> price) {
+    while (inFile >> itemName >> price)
+    {
         cout << setw(3) << counter++ << ". " << itemName << endl;
     }
 
     inFile.close();
 }
 
-void addProductToMenu(const char* productName, double productPrice) {
+void addProductToMenu(const char *productName, double productPrice)
+{
     ofstream menuFile("../data/menu.txt", ios::app);
-    if (!menuFile) {
+    if (!menuFile)
+    {
         cout << "Error: Unable to open menu file!" << endl;
         return;
     }
@@ -55,15 +60,18 @@ void addProductToMenu(const char* productName, double productPrice) {
     cout << "Product \"" << productName << "\" with price " << productPrice << " has been added to the menu!" << endl;
 }
 
-void removeProductFromMenu(const char* productName) {
+void removeProductFromMenu(const char *productName)
+{
     ifstream menuFile("../data/menu.txt");
-    if (!menuFile) {
+    if (!menuFile)
+    {
         cout << "Error: Unable to open menu file!" << endl;
         return;
     }
 
     ofstream tempFile("../data/temp_menu.txt");
-    if (!tempFile) {
+    if (!tempFile)
+    {
         cout << "Error: Unable to open temporary file!" << endl;
         menuFile.close();
         return;
@@ -72,14 +80,17 @@ void removeProductFromMenu(const char* productName) {
     char line[100];
     bool productFound = false;
 
-    while (menuFile.getline(line, sizeof(line))) {
+    while (menuFile.getline(line, sizeof(line)))
+    {
         char menuProduct[50];
         double price;
 
-        if (sscanf(line, "%s %lf", menuProduct, &price) == 2) {
-            if (strcmp(menuProduct, productName) == 0) {
+        if (sscanf(line, "%s %lf", menuProduct, &price) == 2)
+        {
+            if (strcmp(menuProduct, productName) == 0)
+            {
                 productFound = true;
-                continue; 
+                continue;
             }
         }
 
@@ -89,12 +100,15 @@ void removeProductFromMenu(const char* productName) {
     menuFile.close();
     tempFile.close();
 
-    if (productFound) {
-        remove("../data/menu.txt"); 
-        rename("../data/temp_menu.txt", "../data/menu.txt"); 
+    if (productFound)
+    {
+        remove("../data/menu.txt");
+        rename("../data/temp_menu.txt", "../data/menu.txt");
         cout << "Product \"" << productName << "\" has been removed from the menu." << endl;
-    } else {
-        remove("../data/temp_menu.txt"); 
+    }
+    else
+    {
+        remove("../data/temp_menu.txt");
         cout << "Product \"" << productName << "\" not found in the menu." << endl;
     }
 }
