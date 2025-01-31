@@ -273,7 +273,7 @@ void addProductToStorage(const char *productName, int quantity)
     ofstream storageOutput("../data/storage.txt");
     if (!storageOutput)
     {
-        cerr << "Error: Unable to open storage file for writing!" << endl;
+        cout << "Error: Unable to open storage file for writing!" << endl;
         return;
     }
     storageOutput << tempContent;
